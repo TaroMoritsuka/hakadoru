@@ -1,0 +1,30 @@
+<div>新規登録</div>
+  <div>
+    <%= form_for(@user) do |f| %>
+      <div>
+        <%= f.label :name, 'ニックネーム' %>
+        <%= f.text_field :name %>
+      </div>
+      <div>
+        <%= f.label :email, 'メールアドレス' %>
+        <%= f.email_field :email %>
+      </div>
+      <div>
+        <%= f.label :password, 'パスワード' %>
+        <%= f.password_field :password %>
+      </div>
+      <div>
+        <%= f.label :password_confirmation, 'パスワード（確認用）' %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+      <div>
+        <%= f.submit '登録する' %>
+      </div>
+    <% end %>
+  </div>
+  
+  
+  
+
+    
+      
