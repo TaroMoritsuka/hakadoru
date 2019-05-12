@@ -11,15 +11,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
   </head>
 
   <body>
-    <h1>Hakadoru</h1>
-    
-    <%= render 'layouts/navbar' %>
     
     <%= yield :cover %>
     
@@ -29,7 +28,6 @@
       <%= yield %>
     </div>
     
-    <%= render 'layouts/footer' %>
-    
   </body>
+  
 </html>

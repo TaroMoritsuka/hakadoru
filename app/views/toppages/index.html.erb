@@ -1,6 +1,78 @@
 <% content_for :cover do %>
-  <h1>はかどるカフェを探そう</h1>
-  <a href="#">Hakadouを始める</a>
-
+  <section class="intro">
+    <div class="inner">
+      <div class="navbar">
+        <%= render 'layouts/navbar' %>
+      </div>
+      <div class="main-content">
+        <div class="comment">
+          <h1>はかどるカフェを探そう</h1>
+        </div>
+       
+         
+            <div class="prefecture-form">
+              
+               <% unless logged_in? %>
+                 <%= link_to 'Hakadoruを始める', signup_path, class: 'btn btn-success btn-lg' %>
+               <% else %>
+              
+              <%= form_tag(new_shop_path, method: :get, class: 'form-inline') do %>
+                <div class="form-group">
+              
+                    <%= text_field_tag  :pref_name, nil, readonly: true , placeholder: "都道府県で探す", class: 'form'  %>
+                  </div>
+                    
+                    <%= button_tag( class: "btn btn-default btn-sm") do %>
+                      <%= content_tag :span, "", class: "glyphicon glyphicon-search" %>
+                    <% end %>
+              <% end %>
+            </div>
+            <div class="prefecture-modal">
+              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#pref-modal">
+                都道府県を選ぶ
+              </button>
+              <div class="modal fade" id="pref-modal">
+                <div class="modal-dialog" style="width:1250px;">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">都道府県を選択</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+              
+                    <div class="modal-body">
+                      <ul id="pref-list">
+                        <% @prefectures.each.with_index(1) do |(id, pref_name), index| %>
+                          <li class="<%= "right" if index % 4 == 0 %>">
+                            <a class="pref" href="javascript:;" data-pref-id="<%= id %>" data-pref-name="<%= pref_name %>"><%= pref_name %></a>
+                          </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <script>
+            $(document).ready(function() {
+              $('.pref').click(function() {
+                var self = $(this);
+                var pref_name = self.data('pref-name');
+                var pref_id = self.data('pref-id');
+                
+                // ここで input タグに対して値を設定する
+                $('#pref_name').val( pref_name )
+                
+                $('#pref-modal').modal('hide');
+              })
+            })
+            </script>
+          <% end %>
+      </div>
+    </div>
+    <%= render 'layouts/footer' %>
+  </section>
+  
 <% end %>
 

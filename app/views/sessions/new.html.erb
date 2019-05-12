@@ -1,0 +1,29 @@
+<% content_for :cover do %>
+  <section class="intro">
+    <div class="inner">
+      <div class="navbar">
+        <%= render 'layouts/navbar' %>
+      </div>
+      <div class="login-box">
+        <h1>ログイン</h1>
+          <div>
+            <%= form_for(:session, url:login_path) do |f| %>
+              <div class="textbox">
+               
+                <i class="fa fa-at" aria-hidden="true"></i>
+                <%= f.email_field :email, placeholder: "メールアドレス"%>
+              </div>
+              <div class="textbox">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                <%= f.password_field :password, placeholder: "パスワード" %>
+              </div>
+              <div class="loginbtn">
+                <%= f.submit 'ログイン' %>
+              </div>
+            <% end %>
+          </div>
+      </div>
+    </div>
+    
+  </section>
+<% end %>
