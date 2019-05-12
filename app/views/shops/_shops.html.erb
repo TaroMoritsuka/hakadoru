@@ -4,7 +4,9 @@
       <div class="navbar">
         <%= render 'layouts/navbar' %>
       </div>        
-        
+        <div class="shops">
+          <h1><%= @pref_name %>のWi-Fi・電源のあるカフェ一覧</h1>
+        </div>
         
         
         <% if shops %>
@@ -15,19 +17,21 @@
                   <div class="panel panel-default">
                     <div class="panel-heading text-center">
                       <!-- img src="<%= shop.image_url %>" alt="" -->
-                      <%= image_tag shop.image_url %>
+                      <%= image_tag shop.image_url, :alt => "No Image" %>
                     </div>
                     <div class="panel-body">
                       <p class="shop-title"><%= shop.name %></p>
                       <p class="shop-title_kana"><%= shop.name_kana %></p>
                       <p class="shop-address"><%= shop.address %></p>
-                      <p class="shop-tel"><%= shop.tel %></p>
-                      <p class="shop-opentime"><%= shop.opentime %></p>
-                      <p class="shop-holiday"><%= shop.holiday %></p>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#shop-modal-<%= shop.shop_id %>"> <!-- ここ！ -->
-                       カフェ詳細
-                      </button>
-        
+                      <div class="buttons text-center">
+                        <button type="button" class="btn btn-warning " data-toggle="modal" data-target="#shop-modal-<%= shop.shop_id %>"> <!-- ここ！ -->
+                         カフェ詳細
+                        </button>
+                      </div>
+                      <div class="buttons text-center">
+                        <%= render 'wants/want_button', shop: shop %>
+                      </div>
+      
                     </div>
                   </div>
                 </div>
@@ -51,5 +55,6 @@
         <% end %>
       </div>
     </div>
+    <%= render 'layouts/footer' %>
   </section>
 <% end %>

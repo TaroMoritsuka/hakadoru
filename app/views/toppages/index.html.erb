@@ -6,7 +6,9 @@
       </div>
       <div class="main-content">
         <div class="comment">
-          <h1>はかどるカフェを探そう</h1>
+          <%= render 'layouts/flash_messages' %>
+          <h2>Wi-Fiと電源のある</h2>
+          <h1>作業が「はかどる」カフェを探そう</h1>
         </div>
        
          
@@ -19,7 +21,7 @@
               <%= form_tag(new_shop_path, method: :get, class: 'form-inline') do %>
                 <div class="form-group">
               
-                    <%= text_field_tag  :pref_name, nil, readonly: true , placeholder: "都道府県で探す", class: 'form'  %>
+                    <%= text_field_tag  :pref_name, nil, readonly: true , placeholder: "都道府県で探す", class: 'form', required: true  %>
                   </div>
                     
                     <%= button_tag( class: "btn btn-default btn-sm") do %>
@@ -41,8 +43,8 @@
                       </button>
                     </div>
               
-                    <div class="modal-body">
-                      <ul id="pref-list">
+                    <div id="modal-body">
+                      <ul class="pref-list">
                         <% @prefectures.each.with_index(1) do |(id, pref_name), index| %>
                           <li class="<%= "right" if index % 4 == 0 %>">
                             <a class="pref" href="javascript:;" data-pref-id="<%= id %>" data-pref-name="<%= pref_name %>"><%= pref_name %></a>

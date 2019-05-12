@@ -6,7 +6,20 @@ class User < ApplicationRecord
                       uniqueness: { case_sensitive: false }
     has_secure_password
     has_many :wants
-    has_many :shops, through: :wants, source: :shop
+    has_many :want_shops, through: :wants, source: :shop
+    
+  def want(shop)
+    self.wants.find_or_create_by(shop_id: shop.id)
+  end
+
+  def unwant(shop)
+    want = self.wants.find_by(shop_id: shop.id)
+    want.destroy if want
+  end
+
+  def want?(shop)
+    self.want_shops.include?(shop)
+  end
 end
 
 

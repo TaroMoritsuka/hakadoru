@@ -11,10 +11,13 @@
   
         <div class="modal-body">
           <%= image_tag shop.image_url %>
-          <p class="shop-address" href="javascript:;" data-shop-address><%= shop.address %></p>
-          <p class="shop-tel" href="javascript:;" data-shop-tel><%= shop.tel %></p>
-          <p class="shop-opentime" href="javascript:;" data-shop-opentime><%= shop.opentime %></p>
-          <p class="shop-holiday" href="javascript:;" data-shop-holiday><%= shop.holiday %></p>
+          <div class="details">
+            <p class="shop-address" href="javascript:;" data-shop-address>住　　所 :  <%= shop.address %></p>
+            <p class="shop-tel" href="javascript:;" data-shop-tel>電話番号 : <%= shop.tel %></p>
+            <p class="shop-opentime" href="javascript:;" data-shop-opentime>営業時間 : <%= shop.opentime %></p>
+            <p class="shop-holiday" href="javascript:;" data-shop-holiday>休　　日 : <%= shop.holiday %></p>
+            <a href="<%= shop.url %>">ぐるなびのカフェページへ</a>
+          </div>
         </div>
       </div>
     </div>

@@ -22,6 +22,7 @@ class ShopsController < ApplicationController
       "freeword": word,
       "outret": 1,
       "wifi": 1,
+      "hit_per_page": 100,
       
     }
     
@@ -42,7 +43,7 @@ class ShopsController < ApplicationController
     # bodyっぽい
     results = JSON.parse(res.body) 
     results['rest'].each do |result|
-      shop = Shop.new(read(result))
+      shop = Shop.find_or_initialize_by(read(result))
       @shops << shop
     end
   end
