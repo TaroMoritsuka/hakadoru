@@ -47,8 +47,11 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: hakadoru_production
   username: hakadoru
   password: <%= ENV['HAKADORU_DATABASE_PASSWORD'] %>
