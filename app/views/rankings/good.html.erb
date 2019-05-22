@@ -1,0 +1,39 @@
+<% content_for :cover do %>
+  <section class="intro">
+    <div class="inner">
+      <div class="navbar">
+        <%= render 'layouts/navbar' %>
+      </div>        
+      <h1>はかどったランキング</h1>
+      <% if @shops.present? %>
+        <div class="row">
+          <% @shops.each_with_index do |shop, index| %>
+            <div class="shop">
+              <div class="col-md-3 col-sm-4 col-xs-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading text-center">
+                    <img src="<%= shop.image_url %>" alt="" >
+                  </div>
+                  <div class="panel-body">
+                    <p class="shop-title"><%= shop.name %></p>
+                    <p class="shop-title_kana"><%= shop.name_kana %></p>
+                    <p class="shop-address"><%= shop.address %></p>
+                    <div class="buttons text-center">
+                      <% if logged_in? %>
+                        <%= render 'wants/want_button', shop: shop %>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="panel-footer">
+                    <p class="text-center"><%= index+1 %>位: <%= @ranking_counts[shop.id] %> はかどった</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <%= render 'layouts/footer' %>
+  </secton>
+<% end %>

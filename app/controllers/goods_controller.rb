@@ -1,4 +1,4 @@
-class WantsController < ApplicationController
+class GoodsController < ApplicationController
   def create
     @shop = Shop.find_or_initialize_by(shop_id: params[:shop_id])
     
@@ -15,17 +15,15 @@ class WantsController < ApplicationController
       @shop.save
     end
     
-    
-    current_user.want(@shop)
-    flash[:success] = 'カフェを「行ってみたい」に登録しました。'
+    current_user.good(@shop)
+    flash[:success] = 'カフェを「はかどった」に登録しました。'
     redirect_back(fallback_location: root_path)
-  
   end
 
   def destroy
     @shop = Shop.find(params[:shop_id])
-    current_user.unwant(@shop) 
-    flash[:success] = 'カフェの「行ってみたい」を解除しました。'
+    current_user.ungood(@shop) 
+    flash[:success] = 'カフェの「はかどった」を解除しました。'
     redirect_back(fallback_location: root_path)
   end
 end

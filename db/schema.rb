@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190506084923) do
+ActiveRecord::Schema.define(version: 20190518090658) do
+
+  create_table "goods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "type"
+    t.integer  "user_id"
+    t.integer  "shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shop_id"], name: "index_goods_on_shop_id", using: :btree
+    t.index ["user_id", "shop_id"], name: "index_goods_on_user_id_and_shop_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_goods_on_user_id", using: :btree
+  end
 
   create_table "large_regions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "pref_code"
@@ -77,6 +88,8 @@ ActiveRecord::Schema.define(version: 20190506084923) do
     t.index ["user_id"], name: "index_wants_on_user_id", using: :btree
   end
 
+  add_foreign_key "goods", "shops"
+  add_foreign_key "goods", "users"
   add_foreign_key "wants", "shops"
   add_foreign_key "wants", "users"
 end

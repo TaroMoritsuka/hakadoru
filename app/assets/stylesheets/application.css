@@ -32,6 +32,7 @@
  .navbar-right {
   float: right!important;
   margin-right: -90px;
+  text-shadow: 2px 2px 2px #000000;
 }
  
  .navbar-nav>li>a {
@@ -39,6 +40,10 @@
     padding-bottom: 15px;
     color: white;
     font-size: 16px;
+}
+
+.dropdown-menu>li>a {
+ text-shadow: 0 0 0;
 }
  
  
@@ -92,6 +97,7 @@
  .form{
   background-color: transparent;
   border: none;
+  color: black;
  }
  
  .prefecture-modal{
@@ -114,29 +120,41 @@
   width: 210px;
  }
  
-ul#pref-list {
- li {
-   float: left;
-   margin-top: 15px;
-   text-align: center;
-   list-style: none;
-   width: 95px;
-   line-height: 1.1;
-   border-right: 1px solid #dee2e6;
-   
-
-   &.right {
-     border-right: none;
-   }
-
-   a {
-     color: inherit;
-     text-decoration: none;
-   }
- }
+ .glyphicon-search:before {
+ content: "\e003";
+ background: transparent;
+ font-size: 20px;
+ color: white;
 }
  
+ul#pref-list li {
+  float: left;
+  margin-top: 15px;
+  text-align: center;
+  list-style: none;
+  width: 95px;
+  line-height: 1.1;
+  border-right: 1px solid #dee2e6;
+}
+ul#pref-list li.right {
+  border-right: none;
+}
+ul#pref-list li a {
+  color: inherit;
+  text-decoration: none;
+}
 
+.modal-content{
+ height: 550px;
+ width:460px;
+}
+
+.modal-dialog{
+ width: 1250px;
+ width: 80%;
+ margin: 0 auto;
+ max-width: 500px;
+}
  
  .footer{
  
@@ -144,25 +162,30 @@ ul#pref-list {
   text-align: center;
   position: absolute;
   width: 100%;
+  text-shadow: 1px 1px 2px white;
  
   
  }
  
  .main-content h1{
-  color: #d2691e;
+  color: white;
   margin-top: 10px;
+  text-shadow: 2px 2px 3px #d2691e;
  }
  
  .main-content h2{
-  color:  #d2691e;
-  margin-top: 90px;
+ color: white;
+ margin-top: 90px;
+ text-shadow: 2px 2px 3px #d2691e;
  }
  
  .glyphicon-search:before {
     content: "\e003";
     background: transparent;
     font-size: 20px;
+    color: black;
 }
+
 
 .btn-group-sm>.btn, .btn-sm {
     padding: 5px 10px;
@@ -238,6 +261,7 @@ ul#pref-list {
  color: white;
  margin-left: 30px;
  margin-bottom: 30px;
+ text-shadow: 2px 2px 3px #d2691e;
 }
 
 .btn-warning {
@@ -247,6 +271,9 @@ ul#pref-list {
 
 .btn-primary {
  width: 120px;
+ margin: 3px;
+}
+.btn-success {
  margin: 3px;
 }
 
@@ -264,6 +291,7 @@ p.shop-title_kana {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
+  margin-bottom: 0;
 }
 
 p.shop-opentime {
@@ -272,7 +300,14 @@ p.shop-opentime {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
-  
+}
+
+p.shop-modal-opentime {
+  /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 
 p.shop-holiday {
@@ -280,6 +315,14 @@ p.shop-holiday {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+p.shop-modal-holiday {
+  /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
   overflow: hidden;
 }
 
@@ -307,13 +350,17 @@ p.shop-address {
  height: 250px;
 }
 
+.modal-header {
+ padding-bottom: 0;
+}
 
 /* users */
 .user-profile .name {
   margin-bottom: 20px;
 }
 .user-profile .name h1 {
-  text-shadow: 1px 1px 1px #fff;
+  color: white;
+  text-shadow: 2px 2px 3px #d2691e;
   font-weight: bold;
 }
 .user-profile .status ul {

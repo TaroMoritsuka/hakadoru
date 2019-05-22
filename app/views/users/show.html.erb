@@ -16,13 +16,13 @@
             <li>
               <div class="status-label">行ってみたい</div>
               <div id="want_count" class="status-value">
-                xxx
+                <%= @count_want %>
               </div>
             </li>
             <li>
               <div class="status-label">はかどった</div>
               <div id="have_count" class="status-value">
-                xxx
+                <%= @count_good %>
               </div>
             </li>
           </ul>
@@ -30,6 +30,9 @@
       </div>
       
     </div>
+    <%= render 'layouts/flash_messages' %>
+    <%= render 'shops/shops_hakadoru', shops: @shops %>
+    <%= render 'layouts/footer' %>
   </section>
-   <%= render 'layouts/footer' %>
+   
 <% end %>

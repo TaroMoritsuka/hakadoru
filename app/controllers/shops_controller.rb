@@ -5,17 +5,11 @@ class ShopsController < ApplicationController
    
     @shops = []
     @pref_name = params[:pref_name]
-    pref = Prefecture.find_by(pref_name: @pref_name) # ここで Prefecture のレコードを１件取得
-    
+    pref = Prefecture.find_by(pref_name: @pref_name) 
     require 'open-uri'
     require 'net/https'
     require 'json'
-   
     word = "カフェ"
-    
-    # ここでPrefecutre レコードの pref_code カラムが必要
-    # さっきまでだと、主キーをパラメータにしてたけど、ぐるなびAPIは PREFXX が本当はほしい
-    # PREFXX は pref_code カラムに格納されている
     data={
       "keyid": "f9c89128831e35feff63a3472f90a7fc",
       "pref": pref.pref_code,
@@ -23,24 +17,13 @@ class ShopsController < ApplicationController
       "outret": 1,
       "wifi": 1,
       "hit_per_page": 100,
-      
     }
-    
     query=data.to_query
     uri = URI("https://api.gnavi.co.jp/RestSearchAPI/v3/?"+query)
-    ::Rails.logger.debug("uri -> #{uri}") # < ここまでうまく言ってたらURLでが出力されるはず
-
     http = Net::HTTP.new(uri.host, uri.port)
-    ::Rails.logger.debug("http -> #{http}")
-
     http.use_ssl = true
     req = Net::HTTP::Get.new(uri)
     res = http.request(req)
-    ::Rails.logger.debug("res -> #{res}") # Net::HTTPOK オブジェクトから JSON データを取り出してみよう！
-    # メソッドの調べ方は Net::HTTPOK をまんまGoogle検索するとOK!
-    # ここかなぁ
-    # https://docs.ruby-lang.org/ja/latest/class/Net=3a=3aHTTPResponse.html
-    # bodyっぽい
     results = JSON.parse(res.body) 
     results['rest'].each do |result|
       shop = Shop.find_or_initialize_by(read(result))

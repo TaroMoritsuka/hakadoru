@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @shops = @user.shops.uniq
+    @count_want = @user.want_shops.count
+    @count_good = @user.good_shops.count
+    
   end
 
   def new

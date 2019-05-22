@@ -44,7 +44,7 @@
                     </div>
               
                     <div id="modal-body">
-                      <ul class="pref-list">
+                      <ul id="pref-list">
                         <% @prefectures.each.with_index(1) do |(id, pref_name), index| %>
                           <li class="<%= "right" if index % 4 == 0 %>">
                             <a class="pref" href="javascript:;" data-pref-id="<%= id %>" data-pref-name="<%= pref_name %>"><%= pref_name %></a>

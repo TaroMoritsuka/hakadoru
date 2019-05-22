@@ -5,6 +5,7 @@
         <%= render 'layouts/navbar' %>
       </div>        
         <div class="shops">
+          <%= render 'layouts/flash_messages' %>
           <h1><%= @pref_name %>のWi-Fi・電源のあるカフェ一覧</h1>
         </div>
         
@@ -30,6 +31,9 @@
                       </div>
                       <div class="buttons text-center">
                         <%= render 'wants/want_button', shop: shop %>
+                        <%= render 'goods/good_button', shop: shop %>
+                      
+                        
                       </div>
       
                     </div>
