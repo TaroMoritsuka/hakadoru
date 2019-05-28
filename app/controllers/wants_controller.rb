@@ -13,6 +13,7 @@ class WantsController < ApplicationController
       @shop.opentime = params[:opentime]
       @shop.holiday = params[:holiday]
       @shop.save
+      
     end
     
     

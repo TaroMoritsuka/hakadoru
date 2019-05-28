@@ -1,7 +1,6 @@
 <% if current_user.good?(shop) %>
   <%= form_tag(good_path(shop.id), method: :delete) do %>
     <%= hidden_field_tag :shop_id, shop.id %>
-    <%= hidden_field_tag :type, 'Want' %>
     <%= submit_tag '「はかどった」を解除', class: 'btn btn-success' %>
   <% end %>
 <% else %>
